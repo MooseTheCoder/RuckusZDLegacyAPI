@@ -23,6 +23,7 @@ class RuckusZD{
             ]
         ]
     ];
+    
     function __construct($Config){   
         $this->ZDConfig = $Config;
         $this->InitSNMP();
@@ -181,7 +182,6 @@ class RuckusZD{
             $this->ZDConfig['SNMP3_AuthPrivacyPhrase'], // Privacy Passphrase
         );
     }
-
 
     private function GetSNMPHost(){
         return $this->ZDConfig['SNMP3_IP'].':'.$this->ZDConfig['SNMP3_Port'];
