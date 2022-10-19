@@ -15,6 +15,13 @@ class HTTPHelper{
         return false;
     }
 
+    public static function isDelete(){
+        if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+            return true;
+        }
+        return false;
+    }
+
     public static function getJsonAsArray(){
         return json_decode(file_get_contents('php://input'), true);
     }

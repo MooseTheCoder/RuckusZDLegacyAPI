@@ -16,3 +16,5 @@ $GLOBALS['ZD'] = [
         'App_Secret'=>'2532720351'
     ]
 ];
+
+$GLOBALS['debug'] = true;

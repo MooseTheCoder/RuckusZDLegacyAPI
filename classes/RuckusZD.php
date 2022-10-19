@@ -50,6 +50,15 @@ class RuckusZD{
         ];
     }
 
+    public function _GetWlanGroupInternal($ZONEID, $WLANGROUP){
+        $WlanGroups = $this->GetWlanGroups($ZONEID);
+        foreach($WlanGroups['list'] as $WlanGroup){
+            if($WlanGroup['id'] === $WLANGROUP){
+                return $WlanGroup;
+            }
+        }
+    }
+
     public function GetWlanGroups($ZONEID){
         $WlanGroupTable = $this->SNMP->walk($this->OIDMap['WLAN']['GROUP']['TABLE']);
         $WlanGroupList = [];
@@ -72,7 +81,6 @@ class RuckusZD{
         foreach($WlanGroupList as $Index=>$WlanGroup){
             $GroupMembers = $this->GetGroupMembers($ZONEID, $WlanGroup['id']);
             $WlanGroupList[$Index]['members'] = $GroupMembers;
-            Logger::Log(json_encode($GroupMembers));
         }
         return [
             'totalCount'=>count($WlanGroupList),
