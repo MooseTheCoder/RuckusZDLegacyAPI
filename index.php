@@ -1,10 +1,13 @@
 <?php
 
+require_once('classes/ZDModes.php');
+
 require_once('config.php');
 
 require_once('classes/Logger.php');
 require_once('classes/HTTPHelper.php');
 require_once('classes/RuckusZD.php');
+require_once('classes/RuckusZDEmulator.php');
 
 require_once('router.php');
 
@@ -13,6 +16,7 @@ if($GLOBALS['debug']){
     Logger::Log($RequestUrl);
     Logger::Log(json_encode(HTTPHelper::method()));
     Logger::Log(json_encode(HTTPHelper::getJsonAsArray()));
+    Logger::Log('Using ZD Mode '. $GLOBALS['zd_mode']);
 }
 
 post('/$version/session', 'actions/Session.php'); // User Login

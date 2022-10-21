@@ -31,7 +31,7 @@ class RuckusZD{
 
     public function Session($Username, $Password){
         if($Username === $this->ZDConfig['Username'] && $Password === $this->ZDConfig['Password']){
-            return hash('sha256', $this->ZDConfig['App_Secret'].date('Y-m-d'));
+            return hash('sha256', $GLOBALS['App_Key'].date('Y-m-d'));
         }
         return false;
     }
@@ -67,7 +67,7 @@ class RuckusZD{
             $SNMPId = substr($OID, -1);
             $ArrayIndex = (substr($OID, -1) -1);
             $ReferenceOid = substr($OID, 0, -2);
-            $VirtualId = implode('-' , str_split(md5($SNMPId.$this->ZDConfig['App_Secret']), 8));
+            $VirtualId = implode('-' , str_split(md5($SNMPId.$GLOBALS['App_Key']), 8));
             $WlanGroupList[$ArrayIndex]['id'] = $VirtualId;
             $WlanGroupList[$ArrayIndex]['zoneId'] = $ZONEID;
             if($ReferenceOid === $this->OIDMap['WLAN']['GROUP']['NAME']){
@@ -95,7 +95,7 @@ class RuckusZD{
         $GroupMemberLink = $this->SNMP->walk($this->OIDMap['WLAN']['GROUP_WLAN']['ROWSTATUS']);
         foreach($GroupMemberLink as $OID=>$Value){
             $GroupMember = explode('.', substr($OID, -3)); // 0 = Group, 1 = WLAN
-            $VirtualId = implode('-' , str_split(md5($GroupMember[0].$this->ZDConfig['App_Secret']), 8));
+            $VirtualId = implode('-' , str_split(md5($GroupMember[0].$GLOBALS['App_Key']), 8));
             if($VirtualId === $GroupId){
                 // This matches WLAN
                 $WLAN = $this->GetWlan($ZONEID, $GroupMember[1]);
@@ -117,7 +117,7 @@ class RuckusZD{
             $SNMPId = substr($OID, -1);
             $ArrayIndex = (substr($OID, -1) -1);
             $ReferenceOid = substr($OID, 0, -2);
-            $VirtualId = implode('-' , str_split(md5($SNMPId.$this->ZDConfig['App_Secret']), 8));
+            $VirtualId = implode('-' , str_split(md5($SNMPId.$GLOBALS['App_Key']), 8));
             $WlanList[$ArrayIndex]['id'] = $SNMPId;
             $WlanList[$ArrayIndex]['zoneId'] = $ZONEID;
             if($ReferenceOid === $this->OIDMap['WLAN']['WLANS']['NAME']){
@@ -176,7 +176,6 @@ class RuckusZD{
                 4
             ]
         );
-        var_dump($Res);
     }
 
     private function InitSNMP(){

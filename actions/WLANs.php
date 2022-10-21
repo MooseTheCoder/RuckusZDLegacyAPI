@@ -1,6 +1,13 @@
 <?php
 
-$ZD = new RuckusZD($GLOBALS['ZD']['Config']);
+switch($GLOBALS['zd_mode']){
+    case ZDModes::$PHYSICAL :
+        $ZD = new RuckusZD($GLOBALS['ZD']['Config']);
+    break;
+    case ZDModes::$EMULATED :
+        $ZD = new RuckusZDEmulator();
+    break;
+}
 
 if(HTTPHelper::isGet()){
     $Wlans = $ZD->GetWlans($ZONEID);
@@ -14,8 +21,15 @@ if(HTTPHelper::isPost()){
         Strange firmware issue here.
         Add things manually in the API for now.
     */
-    // $Request = HTTPHelper::getJsonAsArray();
-    // $ZD->CreateWlan($Request);
+    if($GLOBALS['zd_mode'] === ZDModes::$PHYSICAL){
+        $Request = HTTPHelper::getJsonAsArray();
+        Logger::Log("==>ACTION REQUIRED : CREATE WLAN {$Request['name']}");
+    }
+
+    if($GLOBALS['zd_mode'] === ZDModes::$EMULATED){
+        $Request = HTTPHelper::getJsonAsArray();
+        $ZD->CreateWlan($Request);
+    }
     echo json_encode(['success'=>true]);
     HTTPHelper::closeConnection();
 }

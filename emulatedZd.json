@@ -1,0 +1,19 @@
+{
+  "WLAN_GROUPS": [
+    {
+      "id": "DEF",
+      "name": "Default",
+      "description": "Default WLANs for Access Points"
+    }
+  ],
+  "WLANS": [
+    {
+      "WLAN_GROUP": "DEF",
+      "name": "Default WiFI",
+      "ssid": "Default WiFI",
+      "vlan": {
+        "accessVlan": 1
+      }
+    }
+  ]
+}

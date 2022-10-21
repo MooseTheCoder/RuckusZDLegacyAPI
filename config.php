@@ -1,5 +1,6 @@
 <?php
 
+$GLOBALS['App_Key'] = '2532720351';
 $GLOBALS['ZD'] = [
     'Config'=>[
         'Model'=>'1100',
@@ -12,9 +13,8 @@ $GLOBALS['ZD'] = [
         'SNMP3_AuthType'=>'md5',
         'SNMP3_AuthPass'=>'readwrite',
         'SNMP3_AuthPrivacy'=>'DES',
-        'SNMP3_AuthPrivacyPhrase'=>'readwrite',
-        'App_Secret'=>'2532720351'
+        'SNMP3_AuthPrivacyPhrase'=>'readwrite'
     ]
 ];
-
-$GLOBALS['debug'] = true;
+$GLOBALS['debug'] = false;
+$GLOBALS['zd_mode'] = ZDModes::$PHYSICAL;
