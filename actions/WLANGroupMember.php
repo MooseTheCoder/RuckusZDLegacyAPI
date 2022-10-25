@@ -17,6 +17,10 @@ if(HTTPHelper::isPost()){
     if($GLOBALS['zd_mode'] === ZDModes::$PHYSICAL){
         Logger::Log("==>ACTION REQUIRED : Add WLAN {$WLAN['name']} to WLAN Group {$WLANGroup['name']}");
     }
+    if($GLOBALS['zd_mode'] === ZDModes::$EMULATED){
+        Logger::Log("$ID");
+        $ZD->AddWlanToGroup($ID, $WLANGROUP);
+    }
     HTTPHelper::headerJson();
     echo json_encode([
         'success'=>true

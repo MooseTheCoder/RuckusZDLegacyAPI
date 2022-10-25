@@ -30,6 +30,7 @@ if(HTTPHelper::isPost()){
         $Request = HTTPHelper::getJsonAsArray();
         $ZD->CreateWlan($Request);
     }
+    HTTPHelper::headerJson();
     echo json_encode(['success'=>true]);
     HTTPHelper::closeConnection();
 }

@@ -125,6 +125,22 @@ class RuckusZDEmulator{
         $this->FileWrite($File);
     }
 
+    public function AddWlanToGroup($WLANIndex, $WLANGROUP){
+        // Find WLAN [$WLANIndex-1]
+        $File = $this->FileRead();
+        $WlanGroups = $this->GetFromFile('WLAN_GROUPS');
+        $WlanId = "DEF";
+        foreach($WlanGroups as $WlanGroup){
+            $VirtualId = implode('-' , str_split(md5($WlanGroup['id'].$GLOBALS['App_Key']), 8));
+            if($VirtualId === $WLANGROUP){
+                $WlanId = $WlanGroup['id'];
+                continue;
+            }
+        }
+        $File['WLANS'][$WLANIndex-1]['WLAN_GROUP'] = $WlanId;
+        $this->FileWrite($File);
+    }
+
     private function GetFromFile($Key){
         $Contents = json_decode(file_get_contents('emulatedZd.json'), true);
         return $Contents[$Key];

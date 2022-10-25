@@ -16,5 +16,5 @@ $GLOBALS['ZD'] = [
         'SNMP3_AuthPrivacyPhrase'=>'readwrite'
     ]
 ];
-$GLOBALS['debug'] = false;
-$GLOBALS['zd_mode'] = ZDModes::$PHYSICAL;
+$GLOBALS['debug'] = true;
+$GLOBALS['zd_mode'] = ZDModes::$EMULATED;

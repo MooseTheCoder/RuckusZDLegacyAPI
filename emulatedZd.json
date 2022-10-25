@@ -1,19 +1,62 @@
 {
-  "WLAN_GROUPS": [
-    {
-      "id": "DEF",
-      "name": "Default",
-      "description": "Default WLANs for Access Points"
-    }
-  ],
-  "WLANS": [
-    {
-      "WLAN_GROUP": "DEF",
-      "name": "Default WiFI",
-      "ssid": "Default WiFI",
-      "vlan": {
-        "accessVlan": 1
-      }
-    }
-  ]
+    "WLAN_GROUPS": [
+        {
+            "id": "DEF",
+            "name": "Default",
+            "description": "Default WLANs for Access Points"
+        },
+        {
+            "id": "RDS",
+            "name": "The Rita Duffy Suite",
+            "description": ""
+        },
+        {
+            "id": "JAR",
+            "name": "Jonathan Aiken Room",
+            "description": ""
+        },
+        {
+            "id": "BBR",
+            "name": "Brian Ballard Room",
+            "description": ""
+        },
+        {
+            "id": "QR",
+            "name": "Quigley Room",
+            "description": ""
+        },
+        {
+            "id": "RQ",
+            "name": "Roof Garden",
+            "description": ""
+        },
+        {
+            "id": "HG",
+            "name": "Hotel Guest",
+            "description": ""
+        },
+        {
+            "id": "CONFDEF",
+            "name": "Conference Default",
+            "description": ""
+        }
+    ],
+    "WLANS": [
+        {
+            "WLAN_GROUP": "HG",
+            "name": "Guest Wireless",
+            "ssid": "Guest Wireless",
+            "vlan": {
+                "accessVlan": 1000
+            }
+        },
+        {
+            "WLAN_GROUP": "CONFDEF",
+            "name": "Conference Default",
+            "ssid": "Conference Default",
+            "vlan": {
+                "accessVlan": 2000
+            }
+        }
+    ]
 }
